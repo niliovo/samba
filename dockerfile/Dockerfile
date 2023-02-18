@@ -4,11 +4,11 @@ MAINTAINER niliovo 1791356563@qq.com
 
 ENV TZ=${TZ:-Asia/Shanghai}
 
-COPY samba_build.sh /samba_build.sh
+COPY samba_build.sh /
 
-COPY samba_startup.sh /samba_startup.sh
+COPY samba_startup.sh /
 
-COPY sample_config.yml /sample_config.yml
+COPY sample_config.yml /
 
 RUN "chmod 777 /samba_build.sh && chmod 777 /samba_startup.sh"
 
