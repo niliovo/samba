@@ -10,6 +10,8 @@ COPY samba_startup.sh /samba_startup.sh
 
 COPY sample_config.yml /sample_config.yml
 
+RUN "chmod 777 /samba_build.sh /samba_startup.sh"
+
 RUN "/samba_build.sh"
 
 EXPOSE 137/udp 138/udp 139 445
