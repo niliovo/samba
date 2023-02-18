@@ -35,6 +35,6 @@ jobs:
           file: ./dockerfile/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/samba:latest
-          platforms: linux/amd64,linux/386,linux/arm64,linux/arm
+          platforms: linux/amd64
       - name: amd64 Image digest
         run: echo ${{ steps.docker_build_amd64.outputs.digest }}

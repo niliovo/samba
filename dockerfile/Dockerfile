@@ -4,7 +4,7 @@ MAINTAINER niliovo 1791356563@qq.com
 
 ENV TZ=${TZ:-Asia/Shanghai}
 
-ENV m_dir="/"
+ENV m_dir="/samba"
 
 WORKDIR $m_dir
 
@@ -20,7 +20,7 @@ EXPOSE 137/udp 138/udp 139 445
 
 VOLUME [ "/config" ]
 
-ENTRYPOINT [ "/samba_startup.sh" ]
+ENTRYPOINT [ "samba_startup.sh" ]
 CMD [ "smbd", "-F", "--debug-stdout", "--no-process-group" ]
 
 HEALTHCHECK --interval=30s --timeout=10s \

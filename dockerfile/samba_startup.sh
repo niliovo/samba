@@ -10,7 +10,7 @@ SAMBA_HOSTS_ALLOW=${SAMBA_HOSTS_ALLOW:-0.0.0.0/0 127.0.0.0/8 10.0.0.0/8 172.16.0
 
 NETBIOS_NAME=${NETBIOS_NAME:-SAMBA}
 C_D=${C_D:-/config}
-C_S=${C_S:-/sample_config.yml}
+C_S=${C_S:-/samba/sample_config.yml}
 C_F=${C_F:-config.yml}
 IP_ADDR=${IP_ADDR}
 
