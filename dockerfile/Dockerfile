@@ -4,15 +4,17 @@ MAINTAINER niliovo 1791356563@qq.com
 
 ENV TZ=${TZ:-Asia/Shanghai}
 
-COPY samba_build.sh /
+ENV m_dir="/"
 
-COPY samba_startup.sh /
+WORKDIR $m_dir
 
-COPY sample_config.yml /
+COPY samba_build.sh $m_dir
 
-RUN "chmod 777 /samba_build.sh && chmod 777 /samba_startup.sh"
+COPY samba_startup.sh $m_dir
 
-RUN "/samba_build.sh"
+COPY sample_config.yml $m_dir
+
+RUN chmod a+x $m_dir/samba_build.sh && $m_dir/samba_build.sh
 
 EXPOSE 137/udp 138/udp 139 445
 
