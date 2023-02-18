@@ -1,0 +1,29 @@
+auth:
+  - user: admin
+    group: admin
+    uid: 1000
+    gid: 1000
+    password: password
+    #password_file: /run/secrets/baz_password
+  - user: guest
+    group: guest
+    uid: 405
+    gid: 100
+    password: guest
+
+global:
+  - "force user = admin"
+  - "force group = admin"
+
+share:
+  - name: share
+    comment: Description
+    path: /path/to/your/share
+    browsable: yes
+    readonly: no
+    guestok: yes
+    validusers: admin,guest
+    writelist: admin,guest
+    veto: yes
+    hidefiles: /_*/
+    recycle: yes
