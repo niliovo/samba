@@ -12,7 +12,6 @@ NETBIOS_NAME=${NETBIOS_NAME:-SAMBA}
 C_D=${C_D:-/config}
 C_S=${C_S:-/samba/sample_config.yml}
 C_F=${C_F:-config.yml}
-IP_ADDR=${IP_ADDR}
 
 echo "设置时区为 ${TZ}"
 ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime
@@ -179,8 +178,6 @@ if [[ "$(yq --output-format=json e '(.. | select(tag == "!!str")) |= envsubst' $
     fi
   done
 fi
-
-/usr/bin/wsdd -n ${IP_ADDR} &
 
 chmod -R 0755 /var/lib/samba
 
