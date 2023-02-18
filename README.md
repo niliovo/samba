@@ -12,13 +12,23 @@
 
 ## Docker-Cli使用指南
 
+- amd64/i386/arm64
 
 ```sh
 docker run -itd --name samba --hostname samba --net host --restart always -v /your_path/samba/config:/config -e PUID=0 -e PGID=0 -e TZ=Asia/Shanghai -e IP_ADDR=your_ip --privileged=true niliaerith/samba:latest
 
 ```
 
+- armv7 (由于armv7无法安装wsdd,因此无法启用Windows发现/wsdd功能)
+
+```sh
+docker run -itd --name samba --hostname samba --net host --restart always -v /your_path/samba/config:/config -e PUID=0 -e PGID=0 -e TZ=Asia/Shanghai -e --privileged=true niliaerith/samba:arm
+
+```
+
 ## Docker Compose使用指南
+
+- amd64/i386/arm64
 
 ```compose.yml
   samba:
@@ -42,6 +52,29 @@ docker run -itd --name samba --hostname samba --net host --restart always -v /yo
     privileged: true
 ```
 
+- armv7 (由于armv7无法安装wsdd,因此无法启用Windows发现/wsdd功能)
+
+```compose.yml
+  samba:
+    image: niliaerith/samba:arm
+    container_name: samba
+    hostname: samba
+    restart: always
+    network_mode: host
+    #ports:
+    #  - 137:137/udp
+    #  - 138:138/udp
+    #  - 139:139
+    #  - 445:445
+    volumes:
+      - /your_path/samba/config:/config
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Shanghai
+    privileged: true
+```
+
 ## 变量
 
 > 必须变量
@@ -53,6 +86,7 @@ docker run -itd --name samba --hostname samba --net host --restart always -v /yo
 - - `TZ`为时区,默认为`Asia/Shanghai`
 - `IP_ADDR=your_ip`
 - - `your_ip`修改为你的ip地址或域名,开启此选项后可在Windows平台发现samba服务
+- - (由于armv7无法安装wsdd,因此无法启用Windows发现/wsdd功能)
 
 ## 配置文件
 
@@ -95,7 +129,8 @@ share:
 - amd64
 - 386/32
 - arm64
-- arm/v7
+
+- arm/v7(由于armv7无法安装wsdd,因此无法启用Windows发现/wsdd功能)
 
 # 感谢
 

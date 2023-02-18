@@ -12,13 +12,23 @@
 
 ## Docker-Cli Usage Guide
 
+- amd64/i386/arm64
 
 ```sh
 docker run -itd --name samba --hostname samba --net host --restart always -v /your_path/samba/config:/config -e PUID=0 -e PGID=0 -e TZ=Asia/Shanghai -e IP_ADDR=your_ip --privileged=true niliaerith/samba:latest
 
 ```
 
+- armv7 (Windows Discovery /wsdd function cannot be enabled because wsdd cannot be installed in armv7)
+
+```sh
+docker run -itd --name samba --hostname samba --net host --restart always -v /your_path/samba/config:/config -e PUID=0 -e PGID=0 -e TZ=Asia/Shanghai -e --privileged=true niliaerith/samba:arm
+
+```
+
 ## Docker Compose Usage Guide
+
+- amd64/i386/arm64
 
 ```compose.yml
   samba:
@@ -42,6 +52,29 @@ docker run -itd --name samba --hostname samba --net host --restart always -v /yo
     privileged: true
 ```
 
+- armv7 (Windows Discovery /wsdd function cannot be enabled because wsdd cannot be installed in armv7)
+
+```compose.yml
+  samba:
+    image: niliaerith/samba:arm
+    container_name: samba
+    hostname: samba
+    restart: always
+    network_mode: host
+    #ports:
+    #  - 137:137/udp
+    #  - 138:138/udp
+    #  - 139:139
+    #  - 445:445
+    volumes:
+      - /your_path/samba/config:/config
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Shanghai
+    privileged: true
+```
+
 ## Variable
 
 > Necessary Variable
@@ -53,6 +86,7 @@ docker run -itd --name samba --hostname samba --net host --restart always -v /yo
 - - `TZ` Is the timezone,The default option is `Asia/Shanghai`
 - `IP_ADDR=your_ip`
 - - Change `your_ip` to your ip address or domain name, If enable this option to discover samba services on Windows platforms 
+- - (Windows Discovery /wsdd function cannot be enabled because wsdd cannot be installed in armv7)
 
 ## Configuration file
 
@@ -95,7 +129,8 @@ share:
 - amd64
 - 386/32
 - arm64
-- arm/v7
+
+- arm/v7(Windows Discovery /wsdd function cannot be enabled because wsdd cannot be installed in armv7)
 
 # Thanks
 
