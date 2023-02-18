@@ -20,7 +20,7 @@ EXPOSE 137/udp 138/udp 139 445
 
 VOLUME [ "/config" ]
 
-ENTRYPOINT [ "samba_startup.sh" ]
+ENTRYPOINT ["/bin/bash",  "samba_startup.sh" ]
 CMD [ "smbd", "-F", "--debug-stdout", "--no-process-group" ]
 
 HEALTHCHECK --interval=30s --timeout=10s \
