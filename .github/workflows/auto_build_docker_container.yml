@@ -27,14 +27,14 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build and push amd64
-        id: docker_build_amd64
+      - name: Build and push amd64 i386 arm64
+        id: docker_build_amd64_i386_arm64
         uses: docker/build-push-action@v3
         with:
           context: ./dockerfile/
           file: ./dockerfile/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/samba:latest
-          platforms: linux/386,linux/arm64,linux/arm
+          platforms: linux/amd64,linux/386,linux/arm64
       - name: amd64 Image digest
-        run: echo ${{ steps.docker_build_amd64.outputs.digest }}
+        run: echo ${{ steps.docker_build_amd64_i386_arm64.outputs.digest }}
