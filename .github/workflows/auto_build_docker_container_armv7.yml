@@ -1,4 +1,4 @@
-name: 自动构建docker镜像
+name: 自动构建docker镜像armv7
 
 on:
   schedule:
@@ -27,14 +27,14 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build and push amd64 i386 arm64
-        id: docker_build_amd64_i386_arm64
+      - name: Build and push armv7
+        id: docker_build_armv7
         uses: docker/build-push-action@v3
         with:
           context: ./dockerfile/
-          file: ./dockerfile/Dockerfile
+          file: ./dockerfile/Dockerfile_armv7
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/samba:latest
-          platforms: linux/amd64,linux/386,linux/arm64
+          tags: ${{ secrets.DOCKER_USERNAME }}/samba:arm
+          platforms: linux/arm
       - name: amd64 i386 arm64 Image digest
-        run: echo ${{ steps.docker_build_amd64_i386_arm64.outputs.digest }}
+        run: echo ${{ steps.docker_build_armv7.outputs.digest }}
