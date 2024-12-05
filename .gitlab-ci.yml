@@ -23,6 +23,7 @@ variables:
   tags:
     - oracle
   image: alpine
+  allow_failure: true
   before_script:
     #- sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories
     - TIME=$(TZ='UTC-8' date +'%Y%m%d-%H-%M-%S')
