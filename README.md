@@ -114,6 +114,7 @@ share:
 
 ## 感谢
 
+- [YxVM](https://yxvm.com/)提供稳定云服务
 - [docker-samba](https://github.com/crazy-max/docker-samba)
 - [GitHub](https://github.com/)
 - [Docker Hub](https://hub.docker.com/)
